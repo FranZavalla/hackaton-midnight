@@ -1,0 +1,53 @@
+pragma language_version >= 0.13;
+import CompactStandardLibrary;
+
+struct BallotParams {
+  vot: Vector<1000, Bytes<32>>,
+  cand: Vector<3, Opaque<"string">>
+}
+
+witness secret_key(): Bytes<32>;
+
+export ledger organizer_pks: Set<Bytes<32>>;
+export ledger voters: Set<Bytes<32>>;
+export ledger candidates: Map<Opaque<"string">, Uint<64>>;
+export ledger total_voters: Cell<Uint<64>>;
+export ledger current_votes: Counter;
+export ledger already_voted: Set<Bytes<32>>;
+export ledger is_open: Cell<Boolean>;
+
+constructor(params: BallotParams) {
+    organizer_pks.insert(public_key(secret_key()));
+    for v in params.vot do voters.insert(v);
+    for c in params.cand do candidates.insert(c, 0);
+    total_voters = voters.size();
+    is_open = true;
+};
+
+export circuit vote(candidate: Opaque<"string">): Void {
+  assert is_open "Ballot is closed";
+  assert voters.member(public_key(secret_key())) "Not authorized to vote";
+  assert !already_voted.member(nullifier(secret_key())) "Already voted";
+  already_voted.insert(nullifier(secret_key()));
+  assert candidates.member(candidate) "Invalid candidate";
+  candidates.insert(candidate, candidates.lookup(candidate) + 1 as Uint<64>);
+  current_votes.increment(1);
+}
+
+export circuit close_ballot(): Void {
+  assert organizer_pks.member(public_key(secret_key())) "Only the organizer can close the ballot";
+  is_open = false;
+}
+
+export circuit add_organizer(pk: Bytes<32>): Void {
+  assert pk == public_key(secret_key()) "Only the organizer can add authorities";
+  organizer_pks.insert(pk);
+}
+
+circuit public_key(sk: Bytes<32>): Bytes<32> {
+  return persistent_hash<Vector<2, Bytes<32>>>([pad(32, "commitment-domain"), sk]);
+}
+
+circuit nullifier(sk: Bytes<32>): Bytes<32> {
+  return persistent_hash<Vector<2, Bytes<32>>>([pad(32, "nullifier-domain"), sk]);
+}

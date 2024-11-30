@@ -1,0 +1,45 @@
+{
+  "circuits": [
+    {
+      "name": "vote",
+      "pure": false,
+      "arguments": [
+        {
+          "name": "candidate",
+          "type": {
+            "type-name": "Opaque",
+            "tsType": "string"
+          }
+        }
+      ],
+      "result-type": {
+        "type-name": "Void"
+      }
+    },
+    {
+      "name": "close_ballot",
+      "pure": false,
+      "arguments": [
+      ],
+      "result-type": {
+        "type-name": "Void"
+      }
+    },
+    {
+      "name": "add_organizer",
+      "pure": false,
+      "arguments": [
+        {
+          "name": "pk",
+          "type": {
+            "type-name": "Bytes",
+            "length": 32
+          }
+        }
+      ],
+      "result-type": {
+        "type-name": "Void"
+      }
+    }
+  ]
+}
