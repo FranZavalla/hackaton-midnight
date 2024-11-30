@@ -1,7 +1,5 @@
 "use client";
 import { useState } from "react";
-import { mockData } from "../utils/mock-data";
-import { Result } from "./result";
 import {
   Button,
   Card,
@@ -9,10 +7,13 @@ import {
   Modal,
   ModalBody,
   ModalContent,
-  ModalFooter,
   ModalHeader,
   useDisclosure,
 } from "@nextui-org/react";
+
+import { mockData } from "../utils/mock-data";
+
+import { Result } from "./result";
 
 export const List = () => {
   const [votes, setVotes] = useState(mockData);
@@ -22,8 +23,8 @@ export const List = () => {
   const addVote = (id: number) => {
     setVotes((prevVotes) =>
       prevVotes.map((vote) =>
-        vote.id === id ? { ...vote, votes: vote.votes + 1 } : vote
-      )
+        vote.id === id ? { ...vote, votes: vote.votes + 1 } : vote,
+      ),
     );
   };
 
@@ -51,7 +52,7 @@ export const List = () => {
 
       <Divider className="my-8" />
 
-      <Button onPress={onOpen} className="w-48 ">
+      <Button className="w-48 " onPress={onOpen}>
         Show results
       </Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
@@ -66,9 +67,9 @@ export const List = () => {
                     .map((vote, i) => (
                       <Result
                         key={vote.name}
+                        index={i}
                         name={vote.name}
                         votes={vote.votes}
-                        index={i}
                       />
                     ))}
                 </div>

@@ -5,8 +5,9 @@ import { Providers } from "./providers";
 import { fontSans } from "@/config/fonts";
 import { Header } from "@/components/header";
 
-export const meta: Metadata = {
-  title: "Midnight",
+export const metadata: Metadata = {
+  title: "Ballot Midnight",
+  description: "...",
 };
 
 export const viewport: Viewport = {
