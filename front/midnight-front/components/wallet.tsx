@@ -10,12 +10,14 @@ export const Wallet = () => {
   const [address, setAddress] = useState<string>("");
 
   useEffect(() => {
-    const wallet = window.midnight?.mnLace as DAppConnectorAPI;
-    const enableWallet = async () => {
-      setApi(await wallet.enable());
-    };
+    if (typeof window !== "undefined") {
+      const wallet = window.midnight?.mnLace as DAppConnectorAPI;
+      const enableWallet = async () => {
+        setApi(await wallet.enable());
+      };
 
-    enableWallet();
+      enableWallet();
+    }
   }, []);
 
   useEffect(() => {
@@ -26,7 +28,7 @@ export const Wallet = () => {
     }
   }, [api]);
 
-  if (!window.midnight)
+  if (typeof window !== "undefined" && !window.midnight)
     return (
       <div className="text-white pr-8 w-full text-end">
         Please install a Midnight wallet
