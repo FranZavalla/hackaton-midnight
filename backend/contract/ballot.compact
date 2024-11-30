@@ -34,17 +34,17 @@ export circuit vote(candidate: Opaque<"string">): Void {
   current_votes.increment(1);
 }
 
-export circuit close_ballot(): Void {
-  assert organizer_pks.member(public_key(secret_key())) "Only the organizer can close the ballot";
-  is_open = false;
-}
+// export circuit close_ballot(): Void {
+//   assert organizer_pks.member(public_key(secret_key())) "Only the organizer can close the ballot";
+//   is_open = false;
+// }
 
-export circuit add_organizer(pk: Bytes<32>): Void {
-  assert pk == public_key(secret_key()) "Only the organizer can add authorities";
-  organizer_pks.insert(pk);
-}
+// export circuit add_organizer(pk: Bytes<32>): Void {
+//   assert pk == public_key(secret_key()) "Only the organizer can add authorities";
+//   organizer_pks.insert(pk);
+// }
 
-circuit public_key(sk: Bytes<32>): Bytes<32> {
+export circuit public_key(sk: Bytes<32>): Bytes<32> {
   return persistent_hash<Vector<2, Bytes<32>>>([pad(32, "commitment-domain"), sk]);
 }
 

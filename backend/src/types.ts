@@ -11,22 +11,7 @@ import type {
   Contract,
   Witnesses,
 } from "../contract/managed/ballot/contract/index.cjs";
-import { WitnessContext } from "@midnight-ntwrk/compact-runtime";
-
-export type BallotPrivateState = {
-  readonly secretKey: Uint8Array;
-};
-export declare const createBallotPrivateState: (secretKey: Uint8Array) => {
-  secretKey: Uint8Array<ArrayBufferLike>;
-};
-export declare const witnesses: {
-  local_secret_key: ({
-    privateState,
-  }: WitnessContext<Ledger, BallotPrivateState>) => [
-    BallotPrivateState,
-    Uint8Array,
-  ];
-};
+import { type BallotPrivateState } from "../contract/managed/ballot/contract/witness.ts";
 
 /**
  * The private states consumed throughout the application.
@@ -48,7 +33,7 @@ export type PrivateStates = {
   /**
    * Key used to provide the private state for {@link Ballot} deployments.
    */
-  readonly ballotPrivateState: Ledger;
+  readonly ballotPrivateState: BallotPrivateState;
 };
 
 /**
@@ -56,9 +41,9 @@ export type PrivateStates = {
  *
  * @public
  */
-export type BBoardContract = Contract<
-  BBoardPrivateState,
-  Witnesses<BBoardPrivateState>
+export type BallotContract = Contract<
+  BallotPrivateState,
+  Witnesses<BallotPrivateState>
 >;
 
 /**
@@ -66,8 +51,8 @@ export type BBoardContract = Contract<
  *
  * @public
  */
-export type BBoardCircuitKeys = Exclude<
-  keyof BBoardContract["impureCircuits"],
+export type BallotCircuitKeys = Exclude<
+  keyof BallotContract["impureCircuits"],
   number | symbol
 >;
 
@@ -76,8 +61,8 @@ export type BBoardCircuitKeys = Exclude<
  *
  * @public
  */
-export type BBoardProviders = MidnightProviders<
-  BBoardCircuitKeys,
+export type BallotProviders = MidnightProviders<
+  BallotCircuitKeys,
   PrivateStates
 >;
 
@@ -86,26 +71,20 @@ export type BBoardProviders = MidnightProviders<
  *
  * @public
  */
-export type DeployedBBoardContract = FoundContract<
-  BBoardPrivateState,
-  BBoardContract
+export type DeployedBallotContract = FoundContract<
+  BallotPrivateState,
+  BallotContract
 >;
 
 /**
  * A type that represents the derived combination of public (or ledger), and private state.
  */
-export type BBoardDerivedState = {
-  readonly state: STATE;
-  readonly instance: bigint;
-  readonly message: string | undefined;
-
-  /**
-   * A readonly flag that determines if the current message was posted by the current user.
-   *
-   * @remarks
-   * The `poster` property of the public (or ledger) state is the public key of the message poster, while
-   * the `secretKey` property of {@link BBoardPrivateState} is the secret key of the current user. If
-   * `poster` corresponds to `secretKey`, then `isOwner` is `true`.
-   */
-  readonly isOwner: boolean;
+export type BallotDerivedState = {
+  readonly organizer_pks: Set<Uint8Array>;
+  readonly voters: Set<Uint8Array>;
+  readonly candidates: Map<string, bigint>;
+  readonly total_voters: bigint;
+  readonly current_votes: bigint;
+  readonly already_voted: Set<Uint8Array>;
+  readonly is_open: boolean;
 };
