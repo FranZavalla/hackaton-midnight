@@ -1,0 +1,23 @@
+{"level":30,"time":1733072993169,"pid":488828,"hostname":"plutarch","msg":"Your wallet seed is: 2af7a3a7439ccb558703f1d1285e6839cb36ec4df6d831c200e532803cd2d5b2"}
+{"level":30,"time":1733072993172,"pid":488828,"hostname":"plutarch","msg":"Your wallet address is: 7cd3976fad87ce476baedfbbacd86ff0074fe3c228594c83091aec5fc2817886|030098450edf1ca37ef1fdfc545d80faa4d5d4b4dab25fac7d5472025fb5280bce6edc37a491071fa8dc98355d14409117d9895c98d53bbf7c83"}
+{"level":30,"time":1733072993173,"pid":488828,"hostname":"plutarch","msg":"Your wallet balance is: 0"}
+{"level":30,"time":1733072993173,"pid":488828,"hostname":"plutarch","msg":"Waiting to receive tokens..."}
+{"level":30,"time":1733072993184,"pid":488828,"hostname":"plutarch","msg":"Wallet processed 0 indices out of unknown number"}
+{"level":30,"time":1733073003277,"pid":488828,"hostname":"plutarch","msg":"Wallet processed 1399 indices out of 21381"}
+{"level":30,"time":1733073014251,"pid":488828,"hostname":"plutarch","msg":"Wallet processed 3199 indices out of 21381"}
+{"level":30,"time":1733073024705,"pid":488828,"hostname":"plutarch","msg":"Wallet processed 4799 indices out of 21381"}
+{"level":30,"time":1733073035194,"pid":488828,"hostname":"plutarch","msg":"Wallet processed 6599 indices out of 21381"}
+{"level":30,"time":1733073046247,"pid":488828,"hostname":"plutarch","msg":"Wallet processed 8399 indices out of 21381"}
+{"level":30,"time":1733073057455,"pid":488828,"hostname":"plutarch","msg":"Wallet processed 10199 indices out of 21381"}
+{"level":30,"time":1733073068394,"pid":488828,"hostname":"plutarch","msg":"Wallet processed 11799 indices out of 21381"}
+{"level":30,"time":1733073079538,"pid":488828,"hostname":"plutarch","msg":"Wallet processed 13399 indices out of 21381"}
+{"level":30,"time":1733073089911,"pid":488828,"hostname":"plutarch","msg":"Wallet processed 14999 indices out of 21381"}
+{"level":30,"time":1733073100182,"pid":488828,"hostname":"plutarch","msg":"Wallet processed 16599 indices out of 21381"}
+{"level":30,"time":1733073111471,"pid":488828,"hostname":"plutarch","msg":"Wallet processed 18399 indices out of 21381"}
+{"level":30,"time":1733073122683,"pid":488828,"hostname":"plutarch","msg":"Wallet processed 20199 indices out of 21381"}
+{"level":30,"time":1733073134733,"pid":488828,"hostname":"plutarch","msg":"Wallet processed 21381 indices out of 21381"}
+{"level":30,"time":1733073134734,"pid":488828,"hostname":"plutarch","msg":"Your wallet balance is: 998225658"}
+{"level":30,"time":1733073138423,"pid":488828,"hostname":"plutarch","msg":"deployContract"}
+{"level":30,"time":1733073265401,"pid":488828,"hostname":"plutarch","msg":"Deployed contract at address: 02002859ff124008b38e2845ba2d197de06a6bdcfedd57580af20d92cd4fde80dc53"}
+{"level":50,"time":1733073279387,"pid":488828,"hostname":"plutarch","msg":"Found error 'Error: expected a cell'"}
+{"level":30,"time":1733073279388,"pid":488828,"hostname":"plutarch","msg":"Exiting..."}

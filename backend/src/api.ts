@@ -112,13 +112,29 @@ export class BallotApi implements DeployedBallotAPI {
       ],
       // ...and combine them to produce the required derived state.
       (ledgerState, privateState) => {
+        let results: Map<string, bigint> = new Map<string, bigint>();
+        let organizer_pks: Set<string> = new Set<string>();
+        let voters: Set<string> = new Set<string>();
+        let already_voted: Set<string> = new Set<string>();
+        for (const [k,v] of ledgerState.candidates) {
+          results.set(k,v);
+        }
+        for (const pk of ledgerState.organizerPks) {
+          organizer_pks.add(toHex(pk));
+        }
+        for (const pk of ledgerState.voters) {
+          voters.add(toHex(pk));
+        }
+        for (const pk of ledgerState.alreadyVoted) {
+          already_voted.add(toHex(pk));
+        }
         return {
-          organizer_pks: new Set<Uint8Array>(), //ledgerState.organizerPks,
-          candidates: new Map<string, bigint>(), //ledgerState.candidates,
+          organizer_pks: organizer_pks,
+          candidates: results,
           current_votes: ledgerState.currentVotes,
-          already_voted: new Set<Uint8Array>(), // ledgerState.alreadyVoted,
+          already_voted,
           is_open: ledgerState.isOpen,
-          voters: new Set<Uint8Array>(), //ledgerState.voters,
+          voters,
           total_voters: ledgerState.totalVoters,
         };
       }
@@ -176,17 +192,18 @@ export class BallotApi implements DeployedBallotAPI {
     logger?.info("deployContract");
 
     const secretKeyAgus = "60c92896f96e18f8db21f69b6a5ef83641798ddda952087825f42e814ebb1f47";
+    const secretKeyFran = "2af7a3a7439ccb558703f1d1285e6839cb36ec4df6d831c200e532803cd2d5b2";
     const publicAgus1 = fromHex("7cd3976fad87ce476baedfbbacd86ff0074fe3c228594c83091aec5fc2817886");
-    const publicAgus = pureCircuits.public_key(fromHex(secretKeyAgus));
+    const fisuraKey = pureCircuits.public_key(fromHex(secretKeyAgus));
+    const soditaKey = pureCircuits.public_key(fromHex(secretKeyFran));
 
-    console.log(publicAgus === publicAgus1);
     // EXERCISE 5: FILL IN THE CORRECT ARGUMENTS TO deployContract
     const deployedBallotContract = await deployContract(providers, {
       // EXERCISE ANSWER
       privateStateKey: "ballotPrivateState", // EXERCISE ANSWER
       contract: ballotContractInstace,
       initialPrivateState: await BallotApi.getPrivateState(providers), // EXERCISE ANSWER
-      args: [{ vot: [publicAgus, randomBytes(32), randomBytes(32)], cand: ["Red", "Blue", "Yellow"] }],
+      args: [{ vot: [publicAgus1, fisuraKey, soditaKey], cand: ["Fisu", "Sodita", "Lebowski"] }],
     });
 
     logger?.trace({

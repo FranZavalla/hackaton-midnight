@@ -129,33 +129,8 @@ const displayLedgerState = async (
   if (ledgerState === null) {
     logger.info(`There is no ballot contract deployed at ${contractAddress}`);
   } else {
-    let results: Record<string, number> = {};
-    let organizer_pks: Set<Uint8Array> = new Set<Uint8Array>();
-    let voters: Set<Uint8Array> = new Set<Uint8Array>();
-    let already_voted: Set<Uint8Array> = new Set<Uint8Array>();
-    for (const c in ledgerState.candidates) {
-      results[c] = Number(ledgerState.candidates.lookup(c));
-    }
-    for (const pk of ledgerState.organizerPks) {
-      organizer_pks.add(pk);
-    }
-    for (const pk of ledgerState.voters) {
-      voters.add(pk);
-    }
-    for (const pk of ledgerState.alreadyVoted) {
-      already_voted.add(pk);
-    }
-    const derivedState = {
-      organizer_pks,
-      candidates: results,
-      current_votes: ledgerState.currentVotes.valueOf(),
-      already_voted,
-      is_open: ledgerState.isOpen.valueOf(),
-      voters,
-      total_voters: ledgerState.totalVoters.valueOf(),
-    };
     logger.info(`Current ledger state:`);
-    console.dir(derivedState, { depth: null });
+    console.dir(ledgerState, { depth: null });
   }
 };
 
@@ -172,12 +147,24 @@ const displayPrivateState = async (
   }
 };
 
+const displayDerivedState =
+  (ledgerState: BallotDerivedState | undefined, logger: Logger) => {
+    if (ledgerState === undefined) {
+      logger.info(`No bulletin board state currently available`);
+    } else {
+      logger.info(`Current derived state:`);
+      console.dir(ledgerState, { depth: null });
+    }
+  };
+
+
 const MAIN_LOOP_QUESTION = `
 You can do one of the following:
   1. Vote
   2. Display the current ledger state (known by everyone)
   3. Display the current private state (known only to this DApp instance)
-  4. Exit
+  4. Display the derived state (known by everyone)
+  5. Exit
 Which would you like to do? `;
 
 const mainLoop = async (
@@ -214,6 +201,9 @@ const mainLoop = async (
           await displayPrivateState(providers, logger);
           break;
         case "4":
+          displayDerivedState(currentState, logger);
+          break;
+        case "5":
           logger.info("Exiting...");
           return;
         default:

@@ -84,11 +84,11 @@ export type DeployedBallotContract = FoundContract<
  * A type that represents the derived combination of public (or ledger), and private state.
  */
 export type BallotDerivedState = {
-  readonly organizer_pks: Set<Uint8Array>;
-  readonly voters: Set<Uint8Array>;
+  readonly organizer_pks: Set<string>;
+  readonly voters: Set<string>;
   readonly candidates: Map<string, bigint>;
   readonly total_voters: bigint;
   readonly current_votes: bigint;
-  readonly already_voted: Set<Uint8Array>;
+  readonly already_voted: Set<string>;
   readonly is_open: boolean;
 };

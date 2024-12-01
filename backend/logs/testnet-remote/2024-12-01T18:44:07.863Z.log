@@ -1,0 +1,34 @@
+{"level":30,"time":1733078663042,"pid":569608,"hostname":"plutarch","msg":"Your wallet seed is: 2af7a3a7439ccb558703f1d1285e6839cb36ec4df6d831c200e532803cd2d5b2"}
+{"level":30,"time":1733078663045,"pid":569608,"hostname":"plutarch","msg":"Your wallet address is: 7cd3976fad87ce476baedfbbacd86ff0074fe3c228594c83091aec5fc2817886|030098450edf1ca37ef1fdfc545d80faa4d5d4b4dab25fac7d5472025fb5280bce6edc37a491071fa8dc98355d14409117d9895c98d53bbf7c83"}
+{"level":30,"time":1733078663046,"pid":569608,"hostname":"plutarch","msg":"Your wallet balance is: 0"}
+{"level":30,"time":1733078663046,"pid":569608,"hostname":"plutarch","msg":"Waiting to receive tokens..."}
+{"level":30,"time":1733078663060,"pid":569608,"hostname":"plutarch","msg":"Wallet processed 0 indices out of unknown number"}
+{"level":30,"time":1733078673606,"pid":569608,"hostname":"plutarch","msg":"Wallet processed 799 indices out of 21403"}
+{"level":30,"time":1733078684362,"pid":569608,"hostname":"plutarch","msg":"Wallet processed 1799 indices out of 21403"}
+{"level":30,"time":1733078694809,"pid":569608,"hostname":"plutarch","msg":"Wallet processed 2599 indices out of 21403"}
+{"level":30,"time":1733078706234,"pid":569608,"hostname":"plutarch","msg":"Wallet processed 3799 indices out of 21403"}
+{"level":30,"time":1733078716964,"pid":569608,"hostname":"plutarch","msg":"Wallet processed 4799 indices out of 21403"}
+{"level":30,"time":1733078728106,"pid":569608,"hostname":"plutarch","msg":"Wallet processed 5799 indices out of 21403"}
+{"level":30,"time":1733078738890,"pid":569608,"hostname":"plutarch","msg":"Wallet processed 6799 indices out of 21403"}
+{"level":30,"time":1733078749751,"pid":569608,"hostname":"plutarch","msg":"Wallet processed 7799 indices out of 21403"}
+{"level":30,"time":1733078760477,"pid":569608,"hostname":"plutarch","msg":"Wallet processed 8799 indices out of 21403"}
+{"level":30,"time":1733078771431,"pid":569608,"hostname":"plutarch","msg":"Wallet processed 9799 indices out of 21403"}
+{"level":30,"time":1733078782310,"pid":569608,"hostname":"plutarch","msg":"Wallet processed 10799 indices out of 21403"}
+{"level":30,"time":1733078793876,"pid":569608,"hostname":"plutarch","msg":"Wallet processed 11799 indices out of 21403"}
+{"level":30,"time":1733078804806,"pid":569608,"hostname":"plutarch","msg":"Wallet processed 12399 indices out of 21403"}
+{"level":30,"time":1733078815791,"pid":569608,"hostname":"plutarch","msg":"Wallet processed 13599 indices out of 21403"}
+{"level":30,"time":1733078826529,"pid":569608,"hostname":"plutarch","msg":"Wallet processed 14599 indices out of 21403"}
+{"level":30,"time":1733078837262,"pid":569608,"hostname":"plutarch","msg":"Wallet processed 15599 indices out of 21403"}
+{"level":30,"time":1733078848600,"pid":569608,"hostname":"plutarch","msg":"Wallet processed 16599 indices out of 21403"}
+{"level":30,"time":1733078859709,"pid":569608,"hostname":"plutarch","msg":"Wallet processed 17599 indices out of 21403"}
+{"level":30,"time":1733078870555,"pid":569608,"hostname":"plutarch","msg":"Wallet processed 18599 indices out of 21403"}
+{"level":30,"time":1733078881542,"pid":569608,"hostname":"plutarch","msg":"Wallet processed 19599 indices out of 21403"}
+{"level":30,"time":1733078891907,"pid":569608,"hostname":"plutarch","msg":"Wallet processed 20599 indices out of 21403"}
+{"level":30,"time":1733078905396,"pid":569608,"hostname":"plutarch","msg":"Wallet processed 21399 indices out of 21403"}
+{"level":30,"time":1733078905396,"pid":569608,"hostname":"plutarch","msg":"Your wallet balance is: 997338487"}
+{"level":30,"time":1733078914827,"pid":569608,"hostname":"plutarch","joinContract":{"contractAddress":"02002859ff124008b38e2845ba2d197de06a6bdcfedd57580af20d92cd4fde80dc53"}}
+{"level":30,"time":1733078919337,"pid":569608,"hostname":"plutarch","msg":"Joined contract at address: 02002859ff124008b38e2845ba2d197de06a6bdcfedd57580af20d92cd4fde80dc53"}
+{"level":30,"time":1733078926375,"pid":569608,"hostname":"plutarch","msg":"Current derived state:"}
+{"level":30,"time":1733078957562,"pid":569608,"hostname":"plutarch","msg":"voting for: Red"}
+{"level":50,"time":1733078958533,"pid":569608,"hostname":"plutarch","msg":"Found error 'failed assert: Not authorized to vote'"}
+{"level":30,"time":1733078958534,"pid":569608,"hostname":"plutarch","msg":"Exiting..."}
