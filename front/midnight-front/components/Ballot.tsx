@@ -13,6 +13,8 @@ export const Ballot = () => {
   const [loadingDeploy, setLoadingDeploying] = useState(false);
   const [loadingVote, setLoadingVote] = useState(false);
   const [hasUserVote, setHasUserVote] = useState(false);
+  const [isInputVisible, setIsInputVisible] = useState(false);
+  const [joinAddress, setJoinAddress] = useState("");
   const { onOpen, isOpen, onOpenChange } = useDisclosure();
 
   if (loadingDeploy) return <h1>Loading...</h1>;
@@ -21,7 +23,12 @@ export const Ballot = () => {
     return (
       <div className="flex flex-col gap-4">
         <DeployBallot setBallot={setBallot} setLoading={setLoadingDeploying} />
-        <JoinBallot />
+        <JoinBallot
+          isInputVisible={isInputVisible}
+          setIsInputVisible={setIsInputVisible}
+          joinAddress={joinAddress}
+          setJoinAddress={setJoinAddress}
+        />
       </div>
     );
 

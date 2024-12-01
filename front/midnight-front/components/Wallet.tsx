@@ -1,32 +1,19 @@
 "use client";
-import {
-  DAppConnectorAPI,
-  DAppConnectorWalletAPI,
-} from "@midnight-ntwrk/dapp-connector-api";
-import { useEffect, useState } from "react";
+import { WalletContext } from "@/context/WalletContext";
+import { useContext, useEffect, useState } from "react";
 
 export const Wallet = () => {
-  const [api, setApi] = useState<DAppConnectorWalletAPI | null>(null);
+  const walletContext = useContext(WalletContext);
+
   const [address, setAddress] = useState<string>("");
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const wallet = window.midnight?.mnLace as DAppConnectorAPI;
-      const enableWallet = async () => {
-        setApi(await wallet.enable());
-      };
-
-      enableWallet();
-    }
-  }, []);
-
-  useEffect(() => {
-    if (api) {
-      api.state().then((state) => {
+    if (walletContext && walletContext.wallet) {
+      walletContext.wallet.state().then((state) => {
         setAddress(state.address);
       });
     }
-  }, [api]);
+  }, [walletContext]);
 
   if (typeof window !== "undefined" && !window.midnight)
     return (
