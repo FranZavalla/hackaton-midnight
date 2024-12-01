@@ -11,13 +11,16 @@ import {
 } from "./types";
 import {
   BallotPrivateState,
+  createBallotPrivateState,
   witnesses,
-} from "../contract/managed/ballot/contract/witness";
+} from "../contract/witness";
 import { ContractAddress } from "@midnight-ntwrk/ledger";
 import { combineLatest, from, map, Observable, tap } from "rxjs";
 import { Logger } from "pino";
 import { toHex } from "@midnight-ntwrk/midnight-js-utils";
 import { convert_bigint_to_Uint8Array } from "@midnight-ntwrk/compact-runtime";
+import { deployContract } from "@midnight-ntwrk/midnight-js-contracts";
+
 
 /** @internal */
 const ballotContractInstace: BallotContract = new Contract(witnesses);
@@ -72,11 +75,10 @@ export class BallotApi implements DeployedBallotAPI {
                 ledgerStateChanged: {
                   ledgerState: {
                     ...ledgerState,
-                    state:
-                      ledgerState.state === STATE.occupied
-                        ? "occupied"
-                        : "vacant",
-                    poster: toHex(ledgerState.poster),
+                    alreadyVoted: ledgerState.alreadyVoted,
+                    candidates: ledgerState.candidates,
+                    currentVotes: ledgerState.currentVotes,
+                    isOpen: ledgerState.isOpen,
                   },
                 },
               })
@@ -94,16 +96,14 @@ export class BallotApi implements DeployedBallotAPI {
       ],
       // ...and combine them to produce the required derived state.
       (ledgerState, privateState) => {
-        const hashedSecretKey = pureCircuits.public_key(
-          privateState.secretKey,
-          convert_bigint_to_Uint8Array(32, ledgerState.instance)
-        );
-
         return {
-          state: ledgerState.state,
-          message: ledgerState.message.value,
-          instance: ledgerState.instance,
-          isOwner: toHex(ledgerState.poster) === toHex(hashedSecretKey),
+          organizer_pks: new Set<Uint8Array>,//ledgerState.organizerPks,
+          candidates: new Map<string, bigint>,//ledgerState.candidates,
+          current_votes: ledgerState.currentVotes,
+          already_voted: new Set<Uint8Array>, // ledgerState.alreadyVoted,
+          is_open: ledgerState.isOpen,
+          voters: new Set<Uint8Array>, //ledgerState.voters,
+          total_voters: ledgerState.totalVoters,
         };
       }
     );
@@ -128,20 +128,55 @@ export class BallotApi implements DeployedBallotAPI {
    * @remarks
    * This method can fail during local circuit execution if the bulletin board is currently occupied.
    */
-  async post(message: string): Promise<void> {
-    this.logger?.info(`postingMessage: ${message}`);
+  async vote(candidate: string): Promise<void> {
+    this.logger?.info(`voting for: ${candidate}`);
 
     const txData =
       // EXERCISE 3: CALL THE post CIRCUIT AND SUBMIT THE TRANSACTION TO THE NETWORK
       await this.deployedContract.callTx // EXERCISE ANSWER
-        .post(message); // EXERCISE ANSWER
+        .vote(candidate); // EXERCISE ANSWER
 
     this.logger?.trace({
       transactionAdded: {
-        circuit: "post",
+        circuit: "vote",
         txHash: txData.public.txHash,
         blockHeight: txData.public.blockHeight,
       },
     });
+  }
+
+
+  /**
+   * Deploys a new bulletin board contract to the network.
+   *
+   * @param providers The bulletin board providers.
+   * @param logger An optional 'pino' logger to use for logging.
+   * @returns A `Promise` that resolves with a {@link BBoardAPI} instance that manages the newly deployed
+   * {@link DeployedBBoardContract}; or rejects with a deployment error.
+   */
+  static async deploy(providers: BallotProviders, logger?: Logger): Promise<BallotApi> {
+    logger?.info('deployContract');
+
+    // EXERCISE 5: FILL IN THE CORRECT ARGUMENTS TO deployContract
+    const deployedBallotContract = await deployContract(providers, {
+      // EXERCISE ANSWER
+      privateStateKey: 'ballotPrivateState', // EXERCISE ANSWER
+      contract: ballotContractInstace,
+      initialPrivateState: await BallotApi.getPrivateState(providers), // EXERCISE ANSWER
+      args: [{vot: [], cand: []}]
+    });
+
+    logger?.trace({
+      contractDeployed: {
+        finalizedDeployTxData: deployedBallotContract.deployTxData.public,
+      },
+    });
+
+    return new BallotApi(deployedBallotContract, providers, logger);
+  }
+
+  private static async getPrivateState(providers: BallotProviders): Promise<BallotPrivateState> {
+    const existingPrivateState = await providers.privateStateProvider.get('ballotPrivateState');
+    return existingPrivateState ?? createBallotPrivateState(Buffer.from("a".repeat(32), 'hex'));
   }
 }

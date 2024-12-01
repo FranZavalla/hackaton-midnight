@@ -11,7 +11,7 @@ import type {
   Contract,
   Witnesses,
 } from "../contract/managed/ballot/contract/index.cjs";
-import { type BallotPrivateState } from "../contract/managed/ballot/contract/witness.ts";
+import { type BallotPrivateState } from "../contract/witness.ts";
 
 /**
  * The private states consumed throughout the application.
