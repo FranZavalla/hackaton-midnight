@@ -1,0 +1,37 @@
+{
+  "circuits": [
+    {
+      "name": "vote",
+      "pure": false,
+      "arguments": [
+        {
+          "name": "candidate",
+          "type": {
+            "type-name": "Opaque",
+            "tsType": "string"
+          }
+        }
+      ],
+      "result-type": {
+        "type-name": "Void"
+      }
+    },
+    {
+      "name": "public_key",
+      "pure": true,
+      "arguments": [
+        {
+          "name": "sk",
+          "type": {
+            "type-name": "Bytes",
+            "length": 32
+          }
+        }
+      ],
+      "result-type": {
+        "type-name": "Bytes",
+        "length": 32
+      }
+    }
+  ]
+}

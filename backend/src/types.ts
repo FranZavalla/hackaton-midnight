@@ -10,8 +10,8 @@ import type {
   Ledger,
   Contract,
   Witnesses,
-} from "../contract/managed/ballot/contract/index.cjs";
-import { type BallotPrivateState } from "../contract/witness.ts";
+} from "./contract/managed/ballot/contract/index.cjs";
+import { type BallotPrivateState } from "./contract/witness.ts";
 
 /**
  * The private states consumed throughout the application.

@@ -2,7 +2,7 @@ import {
   Contract,
   ledger,
   pureCircuits,
-} from "../contract/managed/ballot/contract/index.cjs";
+} from "./contract/managed/ballot/contract/index.cjs";
 import {
   BallotContract,
   BallotDerivedState,
@@ -13,7 +13,7 @@ import {
   BallotPrivateState,
   createBallotPrivateState,
   witnesses,
-} from "../contract/witness";
+} from "./contract/witness";
 import { ContractAddress } from "@midnight-ntwrk/ledger";
 import { combineLatest, from, map, Observable, tap } from "rxjs";
 import { Logger } from "pino";
