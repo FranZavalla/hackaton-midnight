@@ -19,7 +19,10 @@ import { combineLatest, from, map, Observable, tap } from "rxjs";
 import { Logger } from "pino";
 import { toHex } from "@midnight-ntwrk/midnight-js-utils";
 import { convert_bigint_to_Uint8Array } from "@midnight-ntwrk/compact-runtime";
-import { deployContract, findDeployedContract } from "@midnight-ntwrk/midnight-js-contracts";
+import {
+  deployContract,
+  findDeployedContract,
+} from "@midnight-ntwrk/midnight-js-contracts";
 
 /** @internal */
 const ballotContractInstace: BallotContract = new Contract(witnesses);

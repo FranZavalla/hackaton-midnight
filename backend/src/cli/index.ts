@@ -48,12 +48,9 @@ import {
   DeployedBallotContract,
   PrivateStates,
 } from "../types";
-import {
-  ledger,
-  Ledger,
-} from "../contract/managed/ballot/contract/index.cjs";
-import { BallotApi } from "../api";
+import { ledger, Ledger } from "../contract/managed/ballot/contract/index.cjs";
 import { Config, StandaloneConfig } from "../config";
+import { BallotApi } from "../api";
 
 // @ts-expect-error: It's needed to make Scala.js and WASM code able to use cryptography
 globalThis.crypto = webcrypto;
@@ -285,16 +282,28 @@ const buildWalletAndWaitForFunds = async (
   return wallet;
 };
 
-const buildFreshWallet = async (config: Config, logger: Logger): Promise<Wallet & Resource> =>
-  await buildWalletAndWaitForFunds(config, logger, toHex(Buffer.from("a".repeat(32), "hex")));
+const buildFreshWallet = async (
+  config: Config,
+  logger: Logger
+): Promise<Wallet & Resource> =>
+  await buildWalletAndWaitForFunds(
+    config,
+    logger,
+    toHex(Buffer.from("a".repeat(32), "hex"))
+  );
 
 // Prompt for a seed and create the wallet with that.
-const buildWalletFromSeed = async (config: Config, rli: Interface, logger: Logger): Promise<Wallet & Resource> => {
-  const seed = await rli.question('Enter your wallet seed: ');
+const buildWalletFromSeed = async (
+  config: Config,
+  rli: Interface,
+  logger: Logger
+): Promise<Wallet & Resource> => {
+  const seed = await rli.question("Enter your wallet seed: ");
   return await buildWalletAndWaitForFunds(config, logger, seed);
 };
 
-const GENESIS_MINT_WALLET_SEED = '0000000000000000000000000000000000000000000000000000000000000042';
+const GENESIS_MINT_WALLET_SEED =
+  "0000000000000000000000000000000000000000000000000000000000000042";
 
 const WALLET_LOOP_QUESTION = `
 You can do one of the following:
@@ -303,19 +312,27 @@ You can do one of the following:
   3. Exit
 Which would you like to do? `;
 
-const buildWallet = async (config: Config, rli: Interface, logger: Logger): Promise<(Wallet & Resource) | null> => {
+const buildWallet = async (
+  config: Config,
+  rli: Interface,
+  logger: Logger
+): Promise<(Wallet & Resource) | null> => {
   if (config instanceof StandaloneConfig) {
-    return await buildWalletAndWaitForFunds(config, logger, GENESIS_MINT_WALLET_SEED);
+    return await buildWalletAndWaitForFunds(
+      config,
+      logger,
+      GENESIS_MINT_WALLET_SEED
+    );
   }
   while (true) {
     const choice = await rli.question(WALLET_LOOP_QUESTION);
     switch (choice) {
-      case '1':
+      case "1":
         return await buildFreshWallet(config, logger);
-      case '2':
+      case "2":
         return await buildWalletFromSeed(config, rli, logger);
-      case '3':
-        logger.info('Exiting...');
+      case "3":
+        logger.info("Exiting...");
         return null;
       default:
         logger.error(`Invalid choice: ${choice}`);
@@ -323,39 +340,58 @@ const buildWallet = async (config: Config, rli: Interface, logger: Logger): Prom
   }
 };
 
-const mapContainerPort = (env: StartedDockerComposeEnvironment, url: string, containerName: string) => {
+const mapContainerPort = (
+  env: StartedDockerComposeEnvironment,
+  url: string,
+  containerName: string
+) => {
   const mappedUrl = new URL(url);
   const container = env.getContainer(containerName);
 
   mappedUrl.port = String(container.getFirstMappedPort());
 
-  return mappedUrl.toString().replace(/\/+$/, '');
+  return mappedUrl.toString().replace(/\/+$/, "");
 };
 
-
-export const run = async (config: Config, logger: Logger, dockerEnv?: DockerComposeEnvironment): Promise<void> => {
+export const run = async (
+  config: Config,
+  logger: Logger,
+  dockerEnv?: DockerComposeEnvironment
+): Promise<void> => {
   const rli = createInterface({ input, output, terminal: true });
   let env;
   if (dockerEnv !== undefined) {
     env = await dockerEnv.up();
 
     if (config instanceof StandaloneConfig) {
-      config.indexer = mapContainerPort(env, config.indexer, 'bboard-indexer');
-      config.indexerWS = mapContainerPort(env, config.indexerWS, 'bboard-indexer');
-      config.node = mapContainerPort(env, config.node, 'bboard-node');
-      config.proofServer = mapContainerPort(env, config.proofServer, 'bboard-proof-server');
+      config.indexer = mapContainerPort(env, config.indexer, "bboard-indexer");
+      config.indexerWS = mapContainerPort(
+        env,
+        config.indexerWS,
+        "bboard-indexer"
+      );
+      config.node = mapContainerPort(env, config.node, "bboard-node");
+      config.proofServer = mapContainerPort(
+        env,
+        config.proofServer,
+        "bboard-proof-server"
+      );
     }
   }
   const wallet = await buildWallet(config, rli, logger);
   try {
     if (wallet !== null) {
-      const walletAndMidnightProvider = await createWalletAndMidnightProvider(wallet);
+      const walletAndMidnightProvider =
+        await createWalletAndMidnightProvider(wallet);
       const providers = {
         privateStateProvider: levelPrivateStateProvider<PrivateStates>({
           privateStateStoreName: config.privateStateStoreName,
         }),
-        publicDataProvider: indexerPublicDataProvider(config.indexer, config.indexerWS),
-        zkConfigProvider: new NodeZkConfigProvider<'vote'>(config.zkConfigPath),
+        publicDataProvider: indexerPublicDataProvider(
+          config.indexer,
+          config.indexerWS
+        ),
+        zkConfigProvider: new NodeZkConfigProvider<"vote">(config.zkConfigPath),
         proofProvider: httpClientProofProvider(config.proofServer),
         walletProvider: walletAndMidnightProvider,
         midnightProvider: walletAndMidnightProvider,
@@ -365,7 +401,7 @@ export const run = async (config: Config, logger: Logger, dockerEnv?: DockerComp
   } catch (e) {
     if (e instanceof Error) {
       logger.error(`Found error '${e.message}'`);
-      logger.info('Exiting...');
+      logger.info("Exiting...");
       logger.debug(`${e.stack}`);
     } else {
       throw e;
@@ -385,7 +421,7 @@ export const run = async (config: Config, logger: Logger, dockerEnv?: DockerComp
         try {
           if (env !== undefined) {
             await env.down();
-            logger.info('Goodbye');
+            logger.info("Goodbye");
             process.exit(0);
           }
         } catch (e) {}

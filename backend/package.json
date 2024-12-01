@@ -6,6 +6,7 @@
   "main": "api.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tsx src/index.ts",
     "build": "tsc && copyfiles -u 2 'src/contract/managed/**/*' dist/contract",
     "testnet-remote": "node --experimental-specifier-resolution=node dist/cli/launcher.js"
   },
@@ -30,7 +31,9 @@
     "@midnight-ntwrk/midnight-js-utils": "0.2.5",
     "@midnight-ntwrk/wallet": "^3.7.2",
     "@midnight-ntwrk/wallet-api": "^3.5.0",
+    "@types/express": "^5.0.0",
     "buffer": "^6.0.3",
+    "express": "^4.21.1",
     "fp-ts": "^2.16.1",
     "io-ts": "^2.2.20",
     "pino": "^8.16.0",
