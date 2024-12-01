@@ -4,7 +4,7 @@ export class API {
   static options: { id: number; name: string; votes: number }[] = [
     { id: 0, name: "Red", votes: 0 },
     { id: 1, name: "Blue", votes: 0 },
-    { id: 2, name: "Green", votes: 0 },
+    { id: 2, name: "Yellow", votes: 0 },
   ];
 
   static async deployBallot(): Promise<IBallot> {
