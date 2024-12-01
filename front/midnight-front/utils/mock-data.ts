@@ -1,3 +1,5 @@
+import { IBallot } from "@/interfaces";
+
 export const mockData = [
   {
     id: 0,
@@ -24,3 +26,29 @@ export const mockData = [
     description: "Blablablaba",
   },
 ];
+
+export class API {
+  static async deployBallot(): Promise<IBallot> {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve({
+          hash: "0x1234",
+          name: "How do you say cookies in spanish?",
+          options: [
+            { id: 0, name: "Masitas", votes: 0 },
+            { id: 1, name: "Galletas", votes: 0 },
+            { id: 2, name: "Otro", votes: 0 },
+          ],
+        });
+      }, 2000);
+    });
+  }
+
+  static async vote(hash: string, optionId: number): Promise<void> {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve();
+      }, 2000);
+    });
+  }
+}

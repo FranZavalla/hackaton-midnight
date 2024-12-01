@@ -40,7 +40,7 @@ export const Wallet = () => {
 
   return (
     <div className="text-white pr-8 w-full text-end">
-      <b>Address:</b> {address.slice(0, 6)}...{address.slice(-6)}
+      <b>Address:</b> {address.slice(0, 4)}...{address.slice(-4)}
     </div>
   );
 };

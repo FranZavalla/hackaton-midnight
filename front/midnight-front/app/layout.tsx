@@ -3,7 +3,7 @@ import { Metadata, Viewport } from "next";
 import clsx from "clsx";
 import { Providers } from "./providers";
 import { fontSans } from "@/config/fonts";
-import { Header } from "@/components/header";
+import { Header } from "@/components/Header";
 
 export const metadata: Metadata = {
   title: "Ballot Midnight",
