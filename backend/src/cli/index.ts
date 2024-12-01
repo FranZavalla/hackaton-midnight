@@ -129,8 +129,33 @@ const displayLedgerState = async (
   if (ledgerState === null) {
     logger.info(`There is no ballot contract deployed at ${contractAddress}`);
   } else {
+    let results: Record<string, number> = {};
+    let organizer_pks: Set<Uint8Array> = new Set<Uint8Array>();
+    let voters: Set<Uint8Array> = new Set<Uint8Array>();
+    let already_voted: Set<Uint8Array> = new Set<Uint8Array>();
+    for (const c in ledgerState.candidates) {
+      results[c] = Number(ledgerState.candidates.lookup(c));
+    }
+    for (const pk of ledgerState.organizerPks) {
+      organizer_pks.add(pk);
+    }
+    for (const pk of ledgerState.voters) {
+      voters.add(pk);
+    }
+    for (const pk of ledgerState.alreadyVoted) {
+      already_voted.add(pk);
+    }
+    const derivedState = {
+      organizer_pks,
+      candidates: results,
+      current_votes: ledgerState.currentVotes.valueOf(),
+      already_voted,
+      is_open: ledgerState.isOpen.valueOf(),
+      voters,
+      total_voters: ledgerState.totalVoters.valueOf(),
+    };
     logger.info(`Current ledger state:`);
-    console.dir(ledgerState, { depth: null });
+    console.dir(derivedState, { depth: null });
   }
 };
 
@@ -316,7 +341,7 @@ Which would you like to do? `;
 export const buildWallet = async (
   config: Config,
   logger: Logger,
-  rli?: Interface,
+  rli?: Interface
 ): Promise<(Wallet & Resource) | null> => {
   if (config instanceof StandaloneConfig) {
     return await buildWalletAndWaitForFunds(

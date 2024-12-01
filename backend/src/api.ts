@@ -14,7 +14,7 @@ import { type BallotPrivateState } from "./types";
 import { ContractAddress } from "@midnight-ntwrk/ledger";
 import { combineLatest, from, map, Observable, tap } from "rxjs";
 import { Logger } from "pino";
-import { toHex } from "@midnight-ntwrk/midnight-js-utils";
+import { fromHex, toHex } from "@midnight-ntwrk/midnight-js-utils";
 import {
   convert_bigint_to_Uint8Array,
   WitnessContext,
@@ -175,13 +175,18 @@ export class BallotApi implements DeployedBallotAPI {
   ): Promise<BallotApi> {
     logger?.info("deployContract");
 
+    const secretKeyAgus = "60c92896f96e18f8db21f69b6a5ef83641798ddda952087825f42e814ebb1f47";
+    const publicAgus1 = fromHex("7cd3976fad87ce476baedfbbacd86ff0074fe3c228594c83091aec5fc2817886");
+    const publicAgus = pureCircuits.public_key(fromHex(secretKeyAgus));
+
+    console.log(publicAgus === publicAgus1);
     // EXERCISE 5: FILL IN THE CORRECT ARGUMENTS TO deployContract
     const deployedBallotContract = await deployContract(providers, {
       // EXERCISE ANSWER
       privateStateKey: "ballotPrivateState", // EXERCISE ANSWER
       contract: ballotContractInstace,
       initialPrivateState: await BallotApi.getPrivateState(providers), // EXERCISE ANSWER
-      args: [{ vot: [randomBytes(32), randomBytes(32), randomBytes(32)], cand: ["Red", "Blue", "Yellow"] }],
+      args: [{ vot: [publicAgus, randomBytes(32), randomBytes(32)], cand: ["Red", "Blue", "Yellow"] }],
     });
 
     logger?.trace({
