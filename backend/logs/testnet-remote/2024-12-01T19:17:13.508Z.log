@@ -1,0 +1,23 @@
+{"level":30,"time":1733080643545,"pid":593031,"hostname":"plutarch","msg":"Your wallet seed is: 4447a10e15cee74ce8a2b9e0d9f24cb34195fd7fba0e23661678662f20997ce4"}
+{"level":30,"time":1733080643548,"pid":593031,"hostname":"plutarch","msg":"Your wallet address is: 88ea5aa5e8c98b999dc8d14b594afd5bc8a0f4f5f38076b2266af4715b4a459b|03006ed191b266a29cc738ce7df408c0e5a9e2e20cb0bbe351737a717d21914174f058186a570375ebc68b5081a857fecce5448597eecd194187"}
+{"level":30,"time":1733080643549,"pid":593031,"hostname":"plutarch","msg":"Your wallet balance is: 0"}
+{"level":30,"time":1733080643549,"pid":593031,"hostname":"plutarch","msg":"Waiting to receive tokens..."}
+{"level":30,"time":1733080643560,"pid":593031,"hostname":"plutarch","msg":"Wallet processed 0 indices out of unknown number"}
+{"level":30,"time":1733080653672,"pid":593031,"hostname":"plutarch","msg":"Wallet processed 1799 indices out of 21422"}
+{"level":30,"time":1733080664106,"pid":593031,"hostname":"plutarch","msg":"Wallet processed 3999 indices out of 21422"}
+{"level":30,"time":1733080674570,"pid":593031,"hostname":"plutarch","msg":"Wallet processed 5799 indices out of 21422"}
+{"level":30,"time":1733080684866,"pid":593031,"hostname":"plutarch","msg":"Wallet processed 7799 indices out of 21423"}
+{"level":30,"time":1733080695192,"pid":593031,"hostname":"plutarch","msg":"Wallet processed 9799 indices out of 21423"}
+{"level":30,"time":1733080705898,"pid":593031,"hostname":"plutarch","msg":"Wallet processed 12199 indices out of 21423"}
+{"level":30,"time":1733080716057,"pid":593031,"hostname":"plutarch","msg":"Wallet processed 14199 indices out of 21423"}
+{"level":30,"time":1733080727195,"pid":593031,"hostname":"plutarch","msg":"Wallet processed 16399 indices out of 21423"}
+{"level":30,"time":1733080737932,"pid":593031,"hostname":"plutarch","msg":"Wallet processed 18599 indices out of 21423"}
+{"level":30,"time":1733080748630,"pid":593031,"hostname":"plutarch","msg":"Wallet processed 20799 indices out of 21423"}
+{"level":30,"time":1733080765199,"pid":593031,"hostname":"plutarch","msg":"Wallet processed 21423 indices out of 21424"}
+{"level":30,"time":1733080765200,"pid":593031,"hostname":"plutarch","msg":"Your wallet balance is: 1000000000"}
+{"level":30,"time":1733080807619,"pid":593031,"hostname":"plutarch","joinContract":{"contractAddress":"0200070b30e3ee93975e6ddddf7534f236ee70eb26915cad3474a0c45fb71031f11f"}}
+{"level":30,"time":1733080811554,"pid":593031,"hostname":"plutarch","msg":"Joined contract at address: 0200070b30e3ee93975e6ddddf7534f236ee70eb26915cad3474a0c45fb71031f11f"}
+{"level":30,"time":1733080815322,"pid":593031,"hostname":"plutarch","msg":"Current derived state:"}
+{"level":30,"time":1733080859224,"pid":593031,"hostname":"plutarch","msg":"voting for: Red"}
+{"level":30,"time":1733080991945,"pid":593031,"hostname":"plutarch","msg":"Current derived state:"}
+{"level":30,"time":1733080994342,"pid":593031,"hostname":"plutarch","msg":"Current secret key is: 60c92896f96e18f8db21f69b6a5ef83641798ddda952087825f42e814ebb1f47"}

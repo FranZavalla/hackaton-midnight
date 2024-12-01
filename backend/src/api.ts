@@ -191,11 +191,13 @@ export class BallotApi implements DeployedBallotAPI {
   ): Promise<BallotApi> {
     logger?.info("deployContract");
 
-    const secretKeyAgus = "60c92896f96e18f8db21f69b6a5ef83641798ddda952087825f42e814ebb1f47";
-    const secretKeyFran = "2af7a3a7439ccb558703f1d1285e6839cb36ec4df6d831c200e532803cd2d5b2";
+    const secretKeyFran = "60c92896f96e18f8db21f69b6a5ef83641798ddda952087825f42e814ebb1f47";
+    const secretKeyAgus = "";
     const publicAgus1 = fromHex("7cd3976fad87ce476baedfbbacd86ff0074fe3c228594c83091aec5fc2817886");
     const fisuraKey = pureCircuits.public_key(fromHex(secretKeyAgus));
     const soditaKey = pureCircuits.public_key(fromHex(secretKeyFran));
+    console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAA,   ", toHex(fisuraKey))
+    console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAA,   ", toHex(soditaKey))
 
     // EXERCISE 5: FILL IN THE CORRECT ARGUMENTS TO deployContract
     const deployedBallotContract = await deployContract(providers, {

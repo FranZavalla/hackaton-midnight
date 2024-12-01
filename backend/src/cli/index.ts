@@ -51,6 +51,7 @@ import {
 import { ledger, Ledger } from "../contract/managed/ballot/contract/index.cjs";
 import { Config, StandaloneConfig } from "../config";
 import { BallotApi } from "../api";
+import { randomBytes } from "node:crypto";
 
 // @ts-expect-error: It's needed to make Scala.js and WASM code able to use cryptography
 globalThis.crypto = webcrypto;
@@ -305,7 +306,7 @@ const buildFreshWallet = async (
   await buildWalletAndWaitForFunds(
     config,
     logger,
-    toHex(Buffer.from("a".repeat(32), "hex"))
+    toHex(randomBytes(32))
   );
 
 // Prompt for a seed and create the wallet with that.
