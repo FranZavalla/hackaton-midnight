@@ -5,6 +5,8 @@ Deployed frontend at: https://hackaton-midnight-mrjp.vercel.app/
 
 To run cli demo (use node version 18):
 
+```bash
 $> yarn install
 $> yarn build
 $> yarn testnet-remote
+```
