@@ -33,6 +33,7 @@
     "@midnight-ntwrk/wallet-api": "^3.5.0",
     "@types/express": "^5.0.0",
     "buffer": "^6.0.3",
+    "cors": "^2.8.5",
     "express": "^4.21.1",
     "fp-ts": "^2.16.1",
     "io-ts": "^2.2.20",
@@ -43,6 +44,7 @@
   },
   "devDependencies": {
     "@types/copyfiles": "^2",
+    "@types/cors": "^2",
     "@types/jest": "^29.5.6",
     "@types/node": "^18.19.67",
     "@types/ws": "^8.5.13",
