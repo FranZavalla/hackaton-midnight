@@ -1,6 +1,6 @@
-import axios from "axios";
-
 export const callBackend = async () => {
-  const res = await axios.get("http://localhost:3000/deploy");
+  const res = await fetch("http://localhost:3001/deploy", {
+    method: "POST",
+  });
   console.log(res);
 };

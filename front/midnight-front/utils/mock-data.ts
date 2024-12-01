@@ -1,4 +1,5 @@
 import { IBallot } from "@/interfaces";
+import { callBackend } from "./call-backend";
 
 export const mockData = [
   {
@@ -29,6 +30,7 @@ export const mockData = [
 
 export class API {
   static async deployBallot(): Promise<IBallot> {
+    await callBackend();
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve({
@@ -40,7 +42,7 @@ export class API {
             { id: 2, name: "Otro", votes: 0 },
           ],
         });
-      }, 2000);
+      }, 100);
     });
   }
 
