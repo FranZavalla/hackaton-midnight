@@ -1,52 +1,26 @@
 import { IBallot } from "@/interfaces";
-import { callBackend, Routes } from "./call-backend";
 
-export const mockData = [
-  {
-    id: 0,
-    name: "Masitas",
-    votes: 0,
-    description: "Yo le digo masitas...",
-  },
-  {
-    id: 1,
-    name: "Galletas",
-    votes: 0,
-    description: "La opcion correcta es galletitas",
-  },
-  {
-    id: 2,
-    name: "Otro",
-    votes: 0,
-    description: "Blablablaba",
-  },
-  {
-    id: 3,
-    name: "Otro00",
-    votes: 0,
-    description: "Blablablaba",
-  },
-];
 export class API {
-  static async deployBallot(): Promise<IBallot> {
-    const res = await callBackend(Routes.DEPLOY);
+  static options: { id: number; name: string; votes: number }[] = [
+    { id: 0, name: "Red", votes: 0 },
+    { id: 1, name: "Blue", votes: 0 },
+    { id: 2, name: "Green", votes: 0 },
+  ];
 
+  static async deployBallot(): Promise<IBallot> {
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve({
-          hash: "0x1234",
-          name: "How do you say cookies in spanish?",
-          options: [
-            { id: 0, name: "Masitas", votes: 0 },
-            { id: 1, name: "Galletas", votes: 0 },
-            { id: 2, name: "Otro", votes: 0 },
-          ],
+          hash: "0x123456abcdef",
+          name: "What is your favorite color?",
+          options: this.options,
         });
-      }, 100);
+      }, 1500);
     });
   }
 
   static async vote(hash: string, optionId: number): Promise<void> {
+    this.options[optionId].votes++;
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve();
@@ -58,15 +32,23 @@ export class API {
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve({
-          hash: "0x1234",
-          name: "How do you say cookies in spanish?",
-          options: [
-            { id: 0, name: "Masitas", votes: 4 },
-            { id: 1, name: "Galletas", votes: 2 },
-            { id: 2, name: "Otro", votes: 8 },
-          ],
+          hash: "0x123456abcdef",
+          name: "What is your favorite color?",
+          options: this.options,
         });
       }, 1000);
+    });
+  }
+
+  static async joinBallot(address: string): Promise<IBallot> {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve({
+          hash: address,
+          name: "What is your favorite color?",
+          options: this.options,
+        });
+      }, 1500);
     });
   }
 }

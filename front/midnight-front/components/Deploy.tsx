@@ -1,7 +1,6 @@
 "use client";
 import { WalletContext } from "@/context/WalletContext";
 import { IBallot } from "@/interfaces";
-import { initializeProviders } from "@/utils/helpers";
 import { API } from "@/utils/mock-data";
 import { Button } from "@nextui-org/button";
 import { Dispatch, SetStateAction, useContext } from "react";
@@ -16,8 +15,6 @@ export const DeployBallot = ({ setBallot, setLoading }: DeployBallotProps) => {
 
   const deployBallot = async () => {
     if (walletContext && walletContext.wallet) {
-      // const providers = await initializeProviders(walletContext.wallet);
-
       setLoading(true);
       const newBallot = await API.deployBallot();
       setBallot(newBallot);

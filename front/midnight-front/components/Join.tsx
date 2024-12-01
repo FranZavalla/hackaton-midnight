@@ -1,12 +1,16 @@
 import { Button } from "@nextui-org/button";
 import { Input } from "./Input";
 import { ChangeEvent, Dispatch, SetStateAction } from "react";
+import { API } from "@/utils/mock-data";
+import { IBallot } from "@/interfaces";
 
 interface JoinBallotProps {
   isInputVisible: boolean;
   setIsInputVisible: Dispatch<SetStateAction<boolean>>;
   joinAddress: string;
   setJoinAddress: Dispatch<SetStateAction<string>>;
+  setBallot: Dispatch<SetStateAction<IBallot | null>>;
+  setLoading: Dispatch<SetStateAction<boolean>>;
 }
 
 export const JoinBallot = ({
@@ -14,6 +18,8 @@ export const JoinBallot = ({
   setIsInputVisible,
   joinAddress,
   setJoinAddress,
+  setBallot,
+  setLoading,
 }: JoinBallotProps) => {
   const toggleInput = () => setIsInputVisible(!isInputVisible);
 
@@ -23,7 +29,12 @@ export const JoinBallot = ({
   };
 
   const joinBallot = async () => {
-    // TODO
+    setLoading(true);
+    const ballot = await API.joinBallot(joinAddress);
+    setLoading(false);
+    setJoinAddress("");
+    setIsInputVisible(false);
+    setBallot(ballot);
   };
 
   return (

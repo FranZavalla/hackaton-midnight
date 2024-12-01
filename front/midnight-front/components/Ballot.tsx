@@ -28,6 +28,8 @@ export const Ballot = () => {
           setIsInputVisible={setIsInputVisible}
           joinAddress={joinAddress}
           setJoinAddress={setJoinAddress}
+          setBallot={setBallot}
+          setLoading={setLoadingDeploying}
         />
       </div>
     );
