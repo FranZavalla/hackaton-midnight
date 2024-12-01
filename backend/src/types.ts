@@ -11,7 +11,11 @@ import type {
   Contract,
   Witnesses,
 } from "./contract/managed/ballot/contract/index.cjs";
-import { BallotPrivateState } from "./contract/witness";
+import { WitnessContext } from "@midnight-ntwrk/compact-runtime";
+
+export type BallotPrivateState = {
+  readonly secret_key: Uint8Array;
+};
 
 /**
  * The private states consumed throughout the application.

@@ -201,7 +201,7 @@ const mainLoop = async (
   }
 };
 
-const createWalletAndMidnightProvider = async (
+export const createWalletAndMidnightProvider = async (
   wallet: Wallet
 ): Promise<WalletProvider & MidnightProvider> => {
   const state = await Rx.firstValueFrom(wallet.state());
@@ -312,10 +312,10 @@ You can do one of the following:
   3. Exit
 Which would you like to do? `;
 
-const buildWallet = async (
+export const buildWallet = async (
   config: Config,
-  rli: Interface,
-  logger: Logger
+  logger: Logger,
+  rli?: Interface,
 ): Promise<(Wallet & Resource) | null> => {
   if (config instanceof StandaloneConfig) {
     return await buildWalletAndWaitForFunds(
@@ -323,6 +323,9 @@ const buildWallet = async (
       logger,
       GENESIS_MINT_WALLET_SEED
     );
+  }
+  if (rli === undefined) {
+    throw new Error("No readline interface provided");
   }
   while (true) {
     const choice = await rli.question(WALLET_LOOP_QUESTION);
@@ -378,7 +381,7 @@ export const run = async (
       );
     }
   }
-  const wallet = await buildWallet(config, rli, logger);
+  const wallet = await buildWallet(config, logger, rli);
   try {
     if (wallet !== null) {
       const walletAndMidnightProvider =

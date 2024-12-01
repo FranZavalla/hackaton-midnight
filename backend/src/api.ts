@@ -1,5 +1,6 @@
 import {
   Contract,
+  Ledger,
   ledger,
   pureCircuits,
 } from "./contract/managed/ballot/contract/index.cjs";
@@ -10,19 +11,29 @@ import {
   DeployedBallotContract,
 } from "./types";
 import {
-  BallotPrivateState,
-  createBallotPrivateState,
-  witnesses,
-} from "./contract/witness";
+  type BallotPrivateState,
+} from "./types"
 import { ContractAddress } from "@midnight-ntwrk/ledger";
 import { combineLatest, from, map, Observable, tap } from "rxjs";
 import { Logger } from "pino";
 import { toHex } from "@midnight-ntwrk/midnight-js-utils";
-import { convert_bigint_to_Uint8Array } from "@midnight-ntwrk/compact-runtime";
+import { convert_bigint_to_Uint8Array, WitnessContext } from "@midnight-ntwrk/compact-runtime";
 import {
   deployContract,
   findDeployedContract,
 } from "@midnight-ntwrk/midnight-js-contracts";
+
+
+export declare const createBallotPrivateState: (secretKey: Uint8Array) => {
+  secret_key: Uint8Array; //<ArrayBufferLike>;
+};
+
+export const witnesses = {
+  secret_key: ({ privateState }: WitnessContext<Ledger, BallotPrivateState>): [BallotPrivateState, Uint8Array ] => [
+    privateState,
+    privateState.secret_key,
+  ],
+};
 
 /** @internal */
 const ballotContractInstace: BallotContract = new Contract(witnesses);
@@ -166,7 +177,7 @@ export class BallotApi implements DeployedBallotAPI {
       privateStateKey: "ballotPrivateState", // EXERCISE ANSWER
       contract: ballotContractInstace,
       initialPrivateState: await BallotApi.getPrivateState(providers), // EXERCISE ANSWER
-      args: [{ vot: [], cand: [] }],
+      args: [{ vot: [], cand: ["Red", "Blue", "Yellow"] }],
     });
 
     logger?.trace({

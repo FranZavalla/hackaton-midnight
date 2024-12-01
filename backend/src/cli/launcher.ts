@@ -1,4 +1,4 @@
-import { createLogger } from '../logger-utils.js';
+import { createLogger } from '../logger-utils';
 import { run } from './index.js';
 import { TestnetRemoteConfig } from '../config.js';
 
