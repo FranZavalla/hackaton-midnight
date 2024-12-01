@@ -2,7 +2,7 @@ pragma language_version >= 0.13;
 import CompactStandardLibrary;
 
 struct BallotParams {
-  vot: Vector<1000, Bytes<32>>,
+  vot: Vector<3, Bytes<32>>,
   cand: Vector<3, Opaque<"string">>
 }
 

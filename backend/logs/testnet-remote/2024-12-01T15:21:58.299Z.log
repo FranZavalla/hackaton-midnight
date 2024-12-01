@@ -1,0 +1,31 @@
+{"level":30,"time":1733066525956,"pid":430717,"hostname":"plutarch","msg":"Your wallet seed is: 2af7a3a7439ccb558703f1d1285e6839cb36ec4df6d831c200e532803cd2d5b2"}
+{"level":30,"time":1733066525958,"pid":430717,"hostname":"plutarch","msg":"Your wallet address is: 7cd3976fad87ce476baedfbbacd86ff0074fe3c228594c83091aec5fc2817886|030098450edf1ca37ef1fdfc545d80faa4d5d4b4dab25fac7d5472025fb5280bce6edc37a491071fa8dc98355d14409117d9895c98d53bbf7c83"}
+{"level":30,"time":1733066525959,"pid":430717,"hostname":"plutarch","msg":"Your wallet balance is: 0"}
+{"level":30,"time":1733066525960,"pid":430717,"hostname":"plutarch","msg":"Waiting to receive tokens..."}
+{"level":30,"time":1733066525969,"pid":430717,"hostname":"plutarch","msg":"Wallet processed 0 indices out of unknown number"}
+{"level":30,"time":1733066537217,"pid":430717,"hostname":"plutarch","msg":"Wallet processed 799 indices out of 21364"}
+{"level":30,"time":1733066548350,"pid":430717,"hostname":"plutarch","msg":"Wallet processed 1799 indices out of 21364"}
+{"level":30,"time":1733066558654,"pid":430717,"hostname":"plutarch","msg":"Wallet processed 2599 indices out of 21364"}
+{"level":30,"time":1733066570335,"pid":430717,"hostname":"plutarch","msg":"Wallet processed 3799 indices out of 21364"}
+{"level":30,"time":1733066580998,"pid":430717,"hostname":"plutarch","msg":"Wallet processed 4799 indices out of 21364"}
+{"level":30,"time":1733066592030,"pid":430717,"hostname":"plutarch","msg":"Wallet processed 5799 indices out of 21364"}
+{"level":30,"time":1733066602817,"pid":430717,"hostname":"plutarch","msg":"Wallet processed 6799 indices out of 21364"}
+{"level":30,"time":1733066614146,"pid":430717,"hostname":"plutarch","msg":"Wallet processed 7799 indices out of 21364"}
+{"level":30,"time":1733066625224,"pid":430717,"hostname":"plutarch","msg":"Wallet processed 8799 indices out of 21364"}
+{"level":30,"time":1733066636510,"pid":430717,"hostname":"plutarch","msg":"Wallet processed 9799 indices out of 21364"}
+{"level":30,"time":1733066647386,"pid":430717,"hostname":"plutarch","msg":"Wallet processed 10799 indices out of 21364"}
+{"level":30,"time":1733066658343,"pid":430717,"hostname":"plutarch","msg":"Wallet processed 11799 indices out of 21364"}
+{"level":30,"time":1733066668748,"pid":430717,"hostname":"plutarch","msg":"Wallet processed 12399 indices out of 21364"}
+{"level":30,"time":1733066680501,"pid":430717,"hostname":"plutarch","msg":"Wallet processed 13599 indices out of 21364"}
+{"level":30,"time":1733066691892,"pid":430717,"hostname":"plutarch","msg":"Wallet processed 14599 indices out of 21364"}
+{"level":30,"time":1733066703218,"pid":430717,"hostname":"plutarch","msg":"Wallet processed 15599 indices out of 21364"}
+{"level":30,"time":1733066714574,"pid":430717,"hostname":"plutarch","msg":"Wallet processed 16599 indices out of 21364"}
+{"level":30,"time":1733066725328,"pid":430717,"hostname":"plutarch","msg":"Wallet processed 17599 indices out of 21364"}
+{"level":30,"time":1733066735692,"pid":430717,"hostname":"plutarch","msg":"Wallet processed 18599 indices out of 21364"}
+{"level":30,"time":1733066746549,"pid":430717,"hostname":"plutarch","msg":"Wallet processed 19599 indices out of 21364"}
+{"level":30,"time":1733066756816,"pid":430717,"hostname":"plutarch","msg":"Wallet processed 20599 indices out of 21364"}
+{"level":30,"time":1733066768769,"pid":430717,"hostname":"plutarch","msg":"Wallet processed 21364 indices out of 21364"}
+{"level":30,"time":1733066768770,"pid":430717,"hostname":"plutarch","msg":"Your wallet balance is: 1000000000"}
+{"level":30,"time":1733066824441,"pid":430717,"hostname":"plutarch","msg":"deployContract"}
+{"level":50,"time":1733066824454,"pid":430717,"hostname":"plutarch","msg":"Found error 'createBallotPrivateState is not defined'"}
+{"level":30,"time":1733066824455,"pid":430717,"hostname":"plutarch","msg":"Exiting..."}

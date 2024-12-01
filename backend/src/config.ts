@@ -44,9 +44,9 @@ export class StandaloneConfig implements Config {
 }
 
 export class TestnetRemoteConfig implements Config {
-  privateStateStoreName = 'bboard-private-state';
+  privateStateStoreName = 'ballot-private-state';
   logDir = path.resolve(currentDir, '..', 'logs', 'testnet-remote', `${new Date().toISOString()}.log`);
-  zkConfigPath = path.resolve(currentDir, '..', '..', 'contract', 'dist', 'managed', 'bboard');
+  zkConfigPath = path.resolve(currentDir, '..', '..', 'backend', 'src', 'contract', 'managed', 'ballot');
   indexer = 'https://indexer.testnet.midnight.network/api/v1/graphql';
   indexerWS = 'wss://indexer.testnet.midnight.network/api/v1/graphql/ws';
   node = 'https://rpc.testnet.midnight.network';

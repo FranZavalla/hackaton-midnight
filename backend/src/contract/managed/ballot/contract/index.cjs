@@ -63,7 +63,7 @@ class Contract {
         if (!(typeof(contextOrig) === 'object' && contextOrig.originalState != undefined && contextOrig.transactionContext != undefined))
           __compactRuntime.type_error('vote',
                                       'argument 1 (as invoked from Typescript)',
-                                      'ballot.compact line 27, char 1',
+                                      'src/contract/ballot.compact line 27, char 1',
                                       'CircuitContext',
                                       contextOrig)
         const context = { ...contextOrig };
@@ -88,13 +88,13 @@ class Contract {
         if (!(typeof(contextOrig) === 'object' && contextOrig.originalState != undefined && contextOrig.transactionContext != undefined))
           __compactRuntime.type_error('public_key',
                                       'argument 1 (as invoked from Typescript)',
-                                      'ballot.compact line 47, char 1',
+                                      'src/contract/ballot.compact line 47, char 1',
                                       'CircuitContext',
                                       contextOrig)
         if (!(sk.buffer instanceof ArrayBuffer && sk.BYTES_PER_ELEMENT === 1 && sk.length === 32))
           __compactRuntime.type_error('public_key',
                                       'argument 1 (argument 2 as invoked from Typescript)',
-                                      'ballot.compact line 47, char 1',
+                                      'src/contract/ballot.compact line 47, char 1',
                                       'Bytes<32>',
                                       sk)
         const context = { ...contextOrig };
@@ -131,11 +131,11 @@ class Contract {
     if (typeof(constructorContext.initialZswapLocalState) !== 'object') {
       throw new __compactRuntime.CompactError(`Contract state constructor: expected 'initialZswapLocalState' in argument 1 (as invoked from Typescript) to be an object`);
     }
-    if (!(typeof(params) === 'object' && Array.isArray(params.vot) && params.vot.length === 1000 && params.vot.every((t) => t.buffer instanceof ArrayBuffer && t.BYTES_PER_ELEMENT === 1 && t.length === 32) && Array.isArray(params.cand) && params.cand.length === 3 && params.cand.every((t) => true)))
+    if (!(typeof(params) === 'object' && Array.isArray(params.vot) && params.vot.length === 3 && params.vot.every((t) => t.buffer instanceof ArrayBuffer && t.BYTES_PER_ELEMENT === 1 && t.length === 32) && Array.isArray(params.cand) && params.cand.length === 3 && params.cand.every((t) => true)))
       __compactRuntime.type_error('Contract state constructor',
                                   'argument 1 (argument 2 as invoked from Typescript)',
-                                  'ballot.compact line 19, char 1',
-                                  'struct BallotParams<vot: Vector<1000, Bytes<32>>, cand: Vector<3, Opaque<"string">>>',
+                                  'src/contract/ballot.compact line 19, char 1',
+                                  'struct BallotParams<vot: Vector<3, Bytes<32>>, cand: Vector<3, Opaque<"string">>>',
                                   params)
     const state = new __compactRuntime.ContractState();
     let stateValue = __compactRuntime.StateValue.newArray();
@@ -372,7 +372,7 @@ class Contract {
     if (!(result.buffer instanceof ArrayBuffer && result.BYTES_PER_ELEMENT === 1 && result.length === 32))
       __compactRuntime.type_error('secret_key',
                                   'return value',
-                                  'ballot.compact line 9, char 1',
+                                  'src/contract/ballot.compact line 9, char 1',
                                   'Bytes<32>',
                                   result)
     partialProofData.privateTranscriptOutputs.push({
@@ -488,7 +488,7 @@ class Contract {
                             'Invalid candidate');
     const tmp_2 = ((t1) => {
                     if (t1 > 18446744073709551615n)
-                      throw new __compactRuntime.CompactError('ballot.compact line 33, char 32: cast from unsigned value to smaller unsigned value failed: ' + t1 + ' is greater than 18446744073709551615');
+                      throw new __compactRuntime.CompactError('src/contract/ballot.compact line 33, char 32: cast from unsigned value to smaller unsigned value failed: ' + t1 + ' is greater than 18446744073709551615');
                     return t1;
                   })(_descriptor_3.fromValue(Contract._query(context,
                                                              partialProofData,
@@ -565,7 +565,7 @@ class Contract {
   }
   #_folder_0(context, partialProofData, f, x, a0)
   {
-    for (let i = 0; i < 1000; i++) x = f(context, partialProofData, x, a0[i]);
+    for (let i = 0; i < 3; i++) x = f(context, partialProofData, x, a0[i]);
     return x;
   }
   #_folder_1(context, partialProofData, f, x, a0)
@@ -662,7 +662,7 @@ function ledger(state) {
         if (!(elem.buffer instanceof ArrayBuffer && elem.BYTES_PER_ELEMENT === 1 && elem.length === 32))
           __compactRuntime.type_error('member',
                                       'argument 1',
-                                      'ballot.compact line 11, char 1',
+                                      'src/contract/ballot.compact line 11, char 1',
                                       'Bytes<32>',
                                       elem)
         return _descriptor_4.fromValue(Contract._query(context,
@@ -741,7 +741,7 @@ function ledger(state) {
         if (!(elem.buffer instanceof ArrayBuffer && elem.BYTES_PER_ELEMENT === 1 && elem.length === 32))
           __compactRuntime.type_error('member',
                                       'argument 1',
-                                      'ballot.compact line 12, char 1',
+                                      'src/contract/ballot.compact line 12, char 1',
                                       'Bytes<32>',
                                       elem)
         return _descriptor_4.fromValue(Contract._query(context,
@@ -951,7 +951,7 @@ function ledger(state) {
         if (!(elem.buffer instanceof ArrayBuffer && elem.BYTES_PER_ELEMENT === 1 && elem.length === 32))
           __compactRuntime.type_error('member',
                                       'argument 1',
-                                      'ballot.compact line 16, char 1',
+                                      'src/contract/ballot.compact line 16, char 1',
                                       'Bytes<32>',
                                       elem)
         return _descriptor_4.fromValue(Contract._query(context,

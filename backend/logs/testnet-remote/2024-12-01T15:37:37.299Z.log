@@ -1,0 +1,20 @@
+{"level":30,"time":1733067476848,"pid":441991,"hostname":"plutarch","msg":"Your wallet seed is: 2af7a3a7439ccb558703f1d1285e6839cb36ec4df6d831c200e532803cd2d5b2"}
+{"level":30,"time":1733067476851,"pid":441991,"hostname":"plutarch","msg":"Your wallet address is: 7cd3976fad87ce476baedfbbacd86ff0074fe3c228594c83091aec5fc2817886|030098450edf1ca37ef1fdfc545d80faa4d5d4b4dab25fac7d5472025fb5280bce6edc37a491071fa8dc98355d14409117d9895c98d53bbf7c83"}
+{"level":30,"time":1733067476852,"pid":441991,"hostname":"plutarch","msg":"Your wallet balance is: 0"}
+{"level":30,"time":1733067476852,"pid":441991,"hostname":"plutarch","msg":"Waiting to receive tokens..."}
+{"level":30,"time":1733067476863,"pid":441991,"hostname":"plutarch","msg":"Wallet processed 0 indices out of unknown number"}
+{"level":30,"time":1733067487761,"pid":441991,"hostname":"plutarch","msg":"Wallet processed 1599 indices out of 21366"}
+{"level":30,"time":1733067498240,"pid":441991,"hostname":"plutarch","msg":"Wallet processed 3799 indices out of 21366"}
+{"level":30,"time":1733067508685,"pid":441991,"hostname":"plutarch","msg":"Wallet processed 5999 indices out of 21366"}
+{"level":30,"time":1733067519097,"pid":441991,"hostname":"plutarch","msg":"Wallet processed 8199 indices out of 21366"}
+{"level":30,"time":1733067529590,"pid":441991,"hostname":"plutarch","msg":"Wallet processed 10399 indices out of 21366"}
+{"level":30,"time":1733067540962,"pid":441991,"hostname":"plutarch","msg":"Wallet processed 12399 indices out of 21366"}
+{"level":30,"time":1733067551319,"pid":441991,"hostname":"plutarch","msg":"Wallet processed 14599 indices out of 21366"}
+{"level":30,"time":1733067561463,"pid":441991,"hostname":"plutarch","msg":"Wallet processed 16599 indices out of 21366"}
+{"level":30,"time":1733067572284,"pid":441991,"hostname":"plutarch","msg":"Wallet processed 18799 indices out of 21366"}
+{"level":30,"time":1733067583025,"pid":441991,"hostname":"plutarch","msg":"Wallet processed 20999 indices out of 21366"}
+{"level":30,"time":1733067599157,"pid":441991,"hostname":"plutarch","msg":"Wallet processed 21366 indices out of 21366"}
+{"level":30,"time":1733067599157,"pid":441991,"hostname":"plutarch","msg":"Your wallet balance is: 1000000000"}
+{"level":30,"time":1733067608092,"pid":441991,"hostname":"plutarch","msg":"deployContract"}
+{"level":50,"time":1733067608137,"pid":441991,"hostname":"plutarch","msg":"Found error 'ENOENT: no such file or directory, open '/home/agustin/filabs/hackathon/hackaton-midnight/contract/dist/managed/bboard/keys/vote.verifier''"}
+{"level":30,"time":1733067608137,"pid":441991,"hostname":"plutarch","msg":"Exiting..."}

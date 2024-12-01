@@ -79,8 +79,8 @@ export const getBallotLedgerState = (
 
 const DEPLOY_OR_JOIN_QUESTION = `
     You can do one of the following:
-      1. Deploy a new bulletin board contract
-      2. Join an existing bulletin board contract
+      1. Deploy a new ballot contract
+      2. Join an existing ballot contract
       3. Exit
     Which would you like to do? `;
 const deployOrJoin = async (
@@ -129,7 +129,8 @@ const displayLedgerState = async (
   if (ledgerState === null) {
     logger.info(`There is no ballot contract deployed at ${contractAddress}`);
   } else {
-    logger.info(`Current ledger state: ${JSON.stringify(ledgerState)}`);
+    logger.info(`Current ledger state:`);
+    console.dir(ledgerState, { depth: null });
   }
 };
 
